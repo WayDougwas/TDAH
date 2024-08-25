@@ -6,4 +6,6 @@
     <string name="hint_date">Idade</string>
     <string name="hint_email">Email</string>
     <string name="hint_name">Nome</string>
+    <string name="txt_logo">TDAH</string>
+    <string name="txt_sub_logo">ENTENDENDO E SUPERANDO</string>
 </resources>

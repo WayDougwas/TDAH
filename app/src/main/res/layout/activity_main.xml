@@ -44,7 +44,7 @@
                 android:id="@+id/txt_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TDAH"
+                android:text="@string/txt_logo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="#000000"
                 android:textSize="50sp"
@@ -53,10 +53,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
             <TextView
-                android:id="@+id/txt_sub"
+                android:id="@+id/txt_sub_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ENTENDENDO E SUPERANDO"
+                android:text="@string/txt_sub_logo"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -77,7 +77,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_sub" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_sub_logo" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_email"

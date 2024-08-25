@@ -6,8 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.view.WindowInsetsController;
-import android.view.WindowInsets;
+import android.view.WindowInsetsController
+import android.view.WindowInsets
 import androidx.annotation.RequiresApi
 
 
