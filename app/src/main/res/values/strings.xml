@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TDAH</string>
+    <string name="entry_hint">Tempo (em minutos)</string>
+    <string name="txt_start_btn">Iniciar</string>
+    <string name="todo">TODO</string>
+    <string name="hint_date">Idade</string>
+    <string name="hint_email">Email</string>
+</resources>
