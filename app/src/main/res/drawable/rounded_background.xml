@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white" /> <!-- Cor de fundo -->
-    <corners android:radius="32dp" /> <!-- Raio dos cantos arredondados -->
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Sombra -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#ff000000" /> <!-- Transparente -->
+            <corners android:radius="16dp" />
+            <padding
+                android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp" />
+        </shape>
+    </item>
+    <!-- Fundo arredondado -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" /> <!-- Cor de fundo -->
+            <corners android:radius="16dp" /> <!-- Raio dos cantos arredondados -->
+        </shape>
+    </item>
+</layer-list>

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.chaquo.python")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,7 +38,7 @@ android {
     }
     flavorDimensions += "pyVersion"
     productFlavors {
-        create("py312") { dimension = "pyVersion" }
+        create("py38") { dimension = "pyVersion" }
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -46,12 +47,11 @@ android {
 
 chaquopy {
     productFlavors {
-        getByName("py312") { version = "3.12" }
+        getByName("py38") { version = "3.8" }
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -60,4 +60,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.rxjava2)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.room.guava)
+    testImplementation(libs.androidx.room.testing)
+    implementation(libs.androidx.room.paging)
 }
