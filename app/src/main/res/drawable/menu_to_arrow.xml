@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/menu_icon">
+
+    <target
+        android:name="line1"
+        android:animation="@animator/menu_to_arrow_animation" />
+</animated-vector>
