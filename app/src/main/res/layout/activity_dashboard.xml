@@ -21,7 +21,7 @@
             android:contentDescription="@string/txt_menu_dash_menu" />
 
         <ImageButton
-            android:id="@+id/btn_dash_r"
+            android:id="@+id/btn_dash_list"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"

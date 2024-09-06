@@ -1,7 +1,6 @@
 package com.example.tdah
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
-import com.example.tdah.user.DatePickerHelper
+import com.example.tdah.util.DatePickerHelper
+import com.example.tdah.util.NavigationUtils
+import com.example.tdah.util.Popup.showLoginPopup
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +54,11 @@ class MainActivity : AppCompatActivity() {
 
         val buttonLogin: Button = findViewById(R.id.btn_admin)
         buttonLogin.setOnClickListener {
-            showLoginPopup()
+            showLoginPopup(this)
+        }
+        val buttonStart: Button = findViewById(R.id.btn_start)
+        buttonStart.setOnClickListener {
+            NavigationUtils.toQuiz(this)
         }
         // Register a callback for the back button
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -60,39 +66,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-    private fun showLoginPopup() {
-        val builder = AlertDialog.Builder(this)
-        val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.popup_login, null)
-        builder.setView(dialogView)
-
-        val editTextUsername: EditText = dialogView.findViewById(R.id.editTextUsername)
-        val editTextPassword: EditText = dialogView.findViewById(R.id.editTextPassword)
-        val buttonLoginSubmit: Button = dialogView.findViewById(R.id.buttonLoginSubmit)
-
-        val dialog = builder.create()
-
-        buttonLoginSubmit.setOnClickListener {
-            val username = editTextUsername.text.toString()
-            val password = editTextPassword.text.toString()
-
-            // Simular a autenticação
-            if (username == "" && password == "") {
-                dialog.dismiss()
-                navigateToDashboard()
-            } else {
-                // Mostrar mensagem de erro
-                editTextUsername.error = getString(R.string.admin_login_error)
-            }
-        }
-
-        dialog.show()
-    }
-
-    private fun navigateToDashboard() {
-        val intent = Intent(this, DashboardActivity::class.java)
-        startActivity(intent)
-    }
-
 }

@@ -13,6 +13,8 @@ import com.example.tdah.databinding.ActivityDashboardBinding
 import androidx.activity.OnBackPressedCallback
 import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
+import com.example.tdah.fragments.ListMenu
+import com.example.tdah.util.Popup
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -40,10 +42,10 @@ class DashboardActivity : AppCompatActivity() {
 
         // Set up button listeners
         binding.btnDashMenu.setOnClickListener { replaceFragment(DashHome()) }
-        binding.btnDashR.setOnClickListener { /* replaceFragment(FragmentB()) */ }
+        binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
-        binding.btnHomeMenu.setOnClickListener { finish() }
-        binding.btnSettings.setOnClickListener { /* replaceFragment(FragmentB()) */ }
+        binding.btnHomeMenu.setOnClickListener { Popup.showExitConfirmationDialog(this,this) }
+        binding.btnSettings.setOnClickListener {  /* TODO: Adicionar a tela de configurações quando fizer */  }
 
         // Set initial fragment
         if (savedInstanceState == null) {
