@@ -3,22 +3,18 @@ package com.example.tdah.util
 import android.app.AlertDialog
 import androidx.core.content.ContextCompat
 import android.content.Context
-import android.os.Build
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
 import com.example.tdah.R
 
 object Popup {
     // Função para exibir o diálogo de confirmação
     fun showExitConfirmationDialog(context: Context, activity: AppCompatActivity, mode: String? = null) {
         val builder = AlertDialog.Builder(context)
-        val msg: String
 
-        msg = if (mode == "p") {
+        val msg: String = if (mode == "p") {
             "Tem certeza que deseja voltar para a tela inicial? Todo o progresso será perdido."
         } else {
             "Tem certeza que deseja voltar para a tela inicial?"
@@ -35,6 +31,8 @@ object Popup {
                 dialog.dismiss()
             }
         val alert = builder.create()
+        alert.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_background_nb))
+
         alert.show()
     }
 
@@ -65,6 +63,7 @@ object Popup {
                 editTextUsername.error = context.getString(R.string.admin_login_error)
             }
         }
+        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_background_nb))
 
         dialog.show()
     }
