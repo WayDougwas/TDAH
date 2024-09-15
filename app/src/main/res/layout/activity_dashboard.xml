@@ -27,7 +27,7 @@
             android:layout_margin="5dp"
             android:layout_below="@+id/btn_graph_menu"
             android:background="@drawable/r"
-            android:contentDescription="@string/txt_menu_dash_r" />
+            android:contentDescription="@string/txt_menu_dash_list" />
 
         <ImageButton
             android:id="@+id/btn_graph_menu"

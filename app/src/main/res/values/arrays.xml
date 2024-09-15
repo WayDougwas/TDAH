@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Reply Preference -->
+    <!-- Existing arrays -->
     <string-array name="reply_entries">
         <item>Reply</item>
         <item>Reply to all</item>
@@ -8,5 +9,27 @@
     <string-array name="reply_values">
         <item>reply</item>
         <item>reply_all</item>
+    </string-array>
+
+    <!-- Questions array -->
+    <string-array name="questions">
+        <item>1. Não consegue prestar muita atenção a detalhes ou comete erros por descuido nos trabalhos da escola ou tarefas.</item>
+        <item>2. Tem dificuldade de manter a atenção em tarefas ou atividades de lazer.</item>
+        <item>3. Parece não estar ouvindo quando se fala diretamente com ele(a).</item>
+        <item>4. Não segue instruções até o fim e não termina deveres da escola, tarefas ou obrigações.</item>
+        <item>5. Tem dificuldade para organizar tarefas e atividades.</item>
+        <item>6. Evita, não gosta ou não se envolve em tarefas que exigem esforço mental prolongado.</item>
+        <item>7. Perde coisas necessárias para atividades (ex: brinquedos, deveres da escola, lápis ou livro).</item>
+        <item>8. Distrai-se com estímulos externos.</item>
+        <item>9. É esquecido(a) em atividades do dia a dia.</item>
+        <item>10. Mexe com as mãos ou os pés.</item>
+        <item>11. Sai do lugar na sala de aula ou em outras situações em que se espera que fique sentado(a).</item>
+        <item>12. Corre de um lado para outro ou sobe demais nas coisas em situações em que isto é inapropriado.</item>
+        <item>13. Tem dificuldade em brincar ou envolver-se em atividades de lazer de forma calma.</item>
+        <item>14. Não para ou frequentemente está a “mil por hora”.</item>
+        <item>15. Fala em excesso.</item>
+        <item>16. Responde às perguntas de forma precipitada, antes delas terem sido terminadas.</item>
+        <item>17. Tem dificuldade de esperar sua vez.</item>
+        <item>18. Interrompe os outros ou se intromete (ex: mete-se nas conversas, jogos).</item>
     </string-array>
 </resources>

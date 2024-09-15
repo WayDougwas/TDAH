@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tdah.R
 
-object Popup {
+object PopupUtils {
     // Função para exibir o diálogo de confirmação
     fun showExitConfirmationDialog(context: Context, activity: AppCompatActivity, mode: String? = null) {
         val builder = AlertDialog.Builder(context)

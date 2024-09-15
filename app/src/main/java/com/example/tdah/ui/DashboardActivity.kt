@@ -1,4 +1,4 @@
-package com.example.tdah
+package com.example.tdah.ui
 
 import android.os.Build
 import android.os.Bundle
@@ -11,10 +11,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.tdah.databinding.ActivityDashboardBinding
 import androidx.activity.OnBackPressedCallback
+import com.example.tdah.R
 import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
 import com.example.tdah.fragments.ListMenu
-import com.example.tdah.util.Popup
+import com.example.tdah.util.DatabaseUltil
+import com.example.tdah.util.PopupUtils
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -44,13 +46,15 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnDashMenu.setOnClickListener { replaceFragment(DashHome()) }
         binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
-        binding.btnHomeMenu.setOnClickListener { Popup.showExitConfirmationDialog(this,this) }
-        binding.btnSettings.setOnClickListener {  /* TODO: Adicionar a tela de configurações quando fizer */  }
+        binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this,this) }
+        binding.btnSettings.setOnClickListener {  DatabaseUltil.exportDatabase(this)  }
 
         // Set initial fragment
         if (savedInstanceState == null) {
             replaceFragment(DashHome())
         }
+
+
 
         // Register a callback for the back button
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {

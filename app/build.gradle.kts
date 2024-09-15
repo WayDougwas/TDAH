@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.types.expressions.GenericArrayClassLiteralSupport.En
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.chaquo.python")
     id("com.google.devtools.ksp")
 }
 
@@ -13,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.tdah"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.5.0"
         ndk {
             // On Apple silicon, you can omit x86_64.
             abiFilters += listOf("arm64-v8a", "x86_64")
@@ -38,21 +37,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    flavorDimensions += "pyVersion"
-    productFlavors {
-        create("py38") { dimension = "pyVersion" }
-    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
         viewBinding = true
-    }
-}
-
-chaquopy {
-    productFlavors {
-        getByName("py38") { version = "3.8" }
     }
 }
 
@@ -82,4 +71,7 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidchart.v31024)
+    ksp (libs.androidx.room.compiler)
+    implementation (libs.kotlinx.coroutines.android)
+
 }
