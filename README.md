@@ -33,3 +33,6 @@ Ensure Gradle is configured and sync the project:
 
 Connect an Android device or start an emulator.
 Click Run in Android Studio to build and deploy the app.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
