@@ -23,7 +23,6 @@ preference = "1.2.1"
 material3Android = "1.3.0"
 
 [libraries]
-androidchart = { module = "com.github.AppDevNext:AndroidChart", version = "placeholder" }
 androidchart-v31024 = { module = "com.github.AppDevNext:AndroidChart", version.ref = "androidchart" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
