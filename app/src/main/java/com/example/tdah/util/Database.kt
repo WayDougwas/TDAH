@@ -11,7 +11,7 @@ object DatabaseUltil {
         try {
             // Verifica se o armazenamento externo está disponível para leitura/escrita
             if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-                val dbPath = context.getDatabasePath("user_database").absolutePath
+                val dbPath = context.getDatabasePath("app_database").absolutePath
                 val exportPath = File(context.getExternalFilesDir(null), "user_database_export.db")
 
                 // Copia o banco de dados para o caminho de exportação
