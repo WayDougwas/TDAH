@@ -1,47 +1,53 @@
 package com.example.tdah.util
 
-import com.google.android.material.datepicker.MaterialDatePicker
 import android.content.Context
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import com.example.tdah.R
 import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDate
+import java.time.Period
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
-class DatePickerHelper(private val context: Context) {
-
-    private var datePickerFragment: DialogFragment? = null
-
-    fun showDatePicker(editText: EditText) {
-        if (context !is AppCompatActivity) {
-            throw IllegalArgumentException("Context must be an instance of AppCompatActivity")
-        }
-
-        // Verificar se o seletor de data já está sendo exibido
-        if (datePickerFragment != null) {
-            return
-        }
-
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .build()
-
-        datePicker.addOnPositiveButtonClickListener { selection ->
-            val date = Date(selection)
-            val formattedDate = formatDate(date)
-            editText.setText(formattedDate)
-            datePickerFragment = null
-        }
-
-        datePicker.addOnDismissListener {
-            datePickerFragment = null
-        }
-
-        datePickerFragment = datePicker
-        datePicker.show(context.supportFragmentManager, "DATE_PICKER")
-    }
+object DateUtils {
 
     private fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         return dateFormat.format(date)
+    }
+
+
+    fun formatDateInput(date: String): String {
+        val cleaned = date.replace("/", "")
+        val formatted = StringBuilder()
+
+        for (i in cleaned.indices) {
+            if (i == 2 || i == 4) {
+                formatted.append("/")
+            }
+            formatted.append(cleaned[i])
+        }
+
+        return formatted.toString()
+    }
+
+    fun isValidDate(date: String): Boolean {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        dateFormat.isLenient = false
+
+        return try {
+            val parsedDate = dateFormat.parse(date)
+            val today = Calendar.getInstance().time
+            parsedDate != null && !parsedDate.after(today)
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    fun calculateAge(birthDate: LocalDate, currentDate: LocalDate = LocalDate.now()): Int {
+        require(birthDate <= currentDate) { "Birth date must not be in the future." }
+        return Period.between(birthDate, currentDate).years
     }
 }

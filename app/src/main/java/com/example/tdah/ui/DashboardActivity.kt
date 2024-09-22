@@ -15,7 +15,7 @@ import com.example.tdah.R
 import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
 import com.example.tdah.fragments.ListMenu
-import com.example.tdah.util.DatabaseUltil
+import com.example.tdah.util.DatabaseUtils
 import com.example.tdah.util.PopupUtils
 
 class DashboardActivity : AppCompatActivity() {
@@ -47,7 +47,7 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
         binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this,this) }
-        binding.btnSettings.setOnClickListener {  DatabaseUltil.exportDatabase(this)  }
+        binding.btnSettings.setOnClickListener {  DatabaseUtils.exportDatabase(this)  }
 
         // Set initial fragment
         if (savedInstanceState == null) {

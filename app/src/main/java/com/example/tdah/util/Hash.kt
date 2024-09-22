@@ -6,7 +6,7 @@ import javax.crypto.spec.PBEKeySpec
 import java.security.SecureRandom
 import java.util.Base64
 
-object hashUtils {
+object HashUtils {
 
     private const val SALT_LENGTH = 16
     private const val ITERATIONS = 10000
@@ -33,7 +33,7 @@ object hashUtils {
 
     fun hashPassword(password: String, salt: ByteArray): String {
         val spec = PBEKeySpec(password.toCharArray(), salt, ITERATIONS, KEY_LENGTH)
-        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+        val factory = SecretKeyFactory.getInstance("AES")
         val hash = factory.generateSecret(spec).encoded
         return Base64.getEncoder().encodeToString(hash)
     }

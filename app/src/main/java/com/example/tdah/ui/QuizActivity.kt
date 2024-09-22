@@ -12,7 +12,7 @@ import com.example.tdah.R
 import com.example.tdah.data.Response
 import com.example.tdah.util.PopupUtils
 import com.example.tdah.util.PopupUtils.showExitConfirmationDialog
-import com.example.tdah.util.hashUtils
+import com.example.tdah.util.HashUtils
 import com.example.tdah.viewmodel.ResponseViewModel
 import com.example.tdah.viewmodel.UserViewModel
 import java.util.Locale
@@ -26,7 +26,8 @@ class QuizActivity : AppCompatActivity() {
     private val responseViewModel: ResponseViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
 
-    private var userId: Long? = null // Adicione um campo para armazenar o userId
+     var userId: Long? = null // Adicione um campo para armazenar o userId
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
@@ -35,8 +36,10 @@ class QuizActivity : AppCompatActivity() {
         val name = intent.getStringExtra("USER_NAME")
         val email = intent.getStringExtra("USER_EMAIL")
         val birtday = intent.getStringExtra("USER_BIRTHDAY")
+        val phone = intent.getIntExtra("USER_PHONE", 0)
+        val schoolyear = intent.getStringExtra("USER_SCHOOLYEAR")
 
-        if (name == null || email == null || birtday == null) {
+        if (name == null || email == null || birtday == null||schoolyear ==null) {
             Toast.makeText(this, getString(R.string.error_user_id), Toast.LENGTH_SHORT).show()
             finish()
             return
@@ -64,7 +67,7 @@ class QuizActivity : AppCompatActivity() {
 
                 // Criar uma string representando a resposta
                 val answerString = "$currentQuestionIndex-$selectedAnswerId"
-                val answerHash = hashUtils.generateHash(answerString)
+                val answerHash = HashUtils.generateHash(answerString)
 
                 // Salvar a resposta temporariamente
                 if (userId != null) {
@@ -72,7 +75,6 @@ class QuizActivity : AppCompatActivity() {
                         userId = userId!!,
                         question = currentQuestionIndex, // Você pode usar um identificador ou índice para a pergunta
                         answer = answerString,
-                        score = totalScore
                     )
                     responseViewModel.insert(response)
                 }
@@ -89,7 +91,7 @@ class QuizActivity : AppCompatActivity() {
                     percentageString = String.format(Locale.getDefault(), "%.1f", percentage)
 
                     // Inserir o usuário e obter o userId
-                    userViewModel.insertUser(name, email, birtday, percentage).observe(this) { id ->
+                    userViewModel.insertUser(name, email, birtday, schoolyear,phone,percentage).observe(this) { id ->
                         userId = id
                     }
 

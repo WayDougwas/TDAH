@@ -6,7 +6,7 @@ import android.widget.Toast
 import java.io.File
 import java.io.IOException
 
-object DatabaseUltil {
+object DatabaseUtils {
     fun exportDatabase(context: Context) {
         try {
             // Verifica se o armazenamento externo está disponível para leitura/escrita

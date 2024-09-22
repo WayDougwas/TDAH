@@ -17,31 +17,33 @@
         android:scaleType="centerCrop"
         android:src="@drawable/braintalk" />
 
-    <!-- ConstraintLayout as the main container -->
+    <!-- Main container -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <!-- Main form layout -->
+        <!-- Form container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/form_container"
-            android:layout_width="400dp"
-            android:layout_height="600dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
             android:gravity="center"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <!-- Logo Image -->
             <ImageView
                 android:id="@+id/img_logo"
                 android:layout_width="300dp"
@@ -51,6 +53,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- Logo Text -->
             <TextView
                 android:id="@+id/txt_logo"
                 android:layout_width="wrap_content"
@@ -63,6 +66,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
+            <!-- Subheading -->
             <TextView
                 android:id="@+id/txt_sub_logo"
                 android:layout_width="wrap_content"
@@ -71,52 +75,141 @@
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/in_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_logo" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/in_name"
-                android:layout_width="360dp"
+            <!-- Title for Name Input -->
+            <TextView
+                android:id="@+id/t_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
-                android:inputType="textPersonName"
+                android:text="@string/name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black_50"
-                app:layout_constraintBottom_toTopOf="@+id/in_email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/layout_in_name"
                 app:layout_constraintTop_toBottomOf="@+id/txt_sub_logo" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/in_email"
+            <!-- Name Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_in_name"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black_50"
-                app:layout_constraintBottom_toTopOf="@+id/in_date"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/in_name" />
+                app:layout_constraintTop_toBottomOf="@+id/t_name">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/in_date"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/in_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_50" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Title for Email Input -->
+            <TextView
+                android:id="@+id/t_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/layout_in_email"
+                app:layout_constraintTop_toBottomOf="@+id/layout_in_name" />
+
+            <!-- Email Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_in_email"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="false"
-                android:hint="@string/hint_date"
-                android:inputType="none"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black_50"
-                app:layout_constraintBottom_toTopOf="@+id/btn_start"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/in_email" />
+                app:layout_constraintTop_toBottomOf="@+id/t_email">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/in_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_50" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Title for Phone Input -->
+            <TextView
+                android:id="@+id/t_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/layout_in_phone"
+                app:layout_constraintTop_toBottomOf="@+id/layout_in_email" />
+
+            <!-- Phone Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_in_phone"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/in_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_phone"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_50" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Title for Date Input -->
+            <TextView
+                android:id="@+id/t_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/layout_in_phone"
+                app:layout_constraintTop_toBottomOf="@+id/layout_in_phone" />
+
+            <!-- Date Input -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_in_date"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/in_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_date"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_50" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Start Button -->
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="320dp"
@@ -126,10 +219,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/in_date" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_in_date" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Additional button in bottom-right corner -->
+        <!-- Admin Button -->
         <Button
             android:id="@+id/btn_admin"
             android:layout_width="64dp"
@@ -140,5 +234,6 @@
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

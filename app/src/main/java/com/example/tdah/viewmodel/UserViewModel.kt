@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.tdah.data.User
 import com.example.tdah.data.UserDatabase
 import com.example.tdah.repository.UserRepository
-import com.example.tdah.util.Age
+import com.example.tdah.util.DateUtils
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -31,7 +31,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             val birthDate = LocalDate.parse(birthDateString, formatter)
-            val age = Age.calculateAge(birthDate)
+            val age = DateUtils.calculateAge(birthDate)
             val user = User(name = name, email = email, age = age, birthday = birthDateString, schoolyerar = schoolyerar, phone = phone ,result = result)
             val userId = userRepository.insert(user) // Retorna Long
             userIdLiveData.postValue(userId) // Poste o Long ID do usuário
