@@ -26,13 +26,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // UserViewModel.kt
-    fun insertUser(name: String, email: String, birthDateString: String,result:Double): LiveData<Long> {
+    fun insertUser(name: String, email: String, birthDateString: String,schoolyerar:String,phone:Int ,result:Double): LiveData<Long> {
         val userIdLiveData = MutableLiveData<Long>()
         viewModelScope.launch {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             val birthDate = LocalDate.parse(birthDateString, formatter)
             val age = Age.calculateAge(birthDate)
-            val user = User(name = name, email = email, age = age, birthday = birthDateString, result = result)
+            val user = User(name = name, email = email, age = age, birthday = birthDateString, schoolyerar = schoolyerar, phone = phone ,result = result)
             val userId = userRepository.insert(user) // Retorna Long
             userIdLiveData.postValue(userId) // Poste o Long ID do usuário
         }

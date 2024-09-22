@@ -9,5 +9,4 @@ data class Response(
     val userId: Long = 0,
     val question: Int,
     val answer: String,
-    val score: Int
 )
