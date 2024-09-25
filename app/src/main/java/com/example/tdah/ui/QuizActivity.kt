@@ -12,7 +12,6 @@ import com.example.tdah.R
 import com.example.tdah.data.Response
 import com.example.tdah.util.PopupUtils
 import com.example.tdah.util.PopupUtils.showExitConfirmationDialog
-import com.example.tdah.util.HashUtils
 import com.example.tdah.viewmodel.ResponseViewModel
 import com.example.tdah.viewmodel.UserViewModel
 import java.util.Locale

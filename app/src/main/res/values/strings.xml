@@ -73,8 +73,8 @@
     <string name="year">Ano</string>
     <string name="error_phone_invalid">Numero Invalido</string>
     <string name="error_date_invalid">Data inválida</string>
-    <string name="hint_series">2°</string>
-    <string name="hint_class">B</string>
+    <string name="hint_series" translatable="false">2°</string>
+    <string name="hint_class" translatable="false">B</string>
     <string name="series">Série</string>
     <string name="classs">Turma</string>
 </resources>

@@ -2,7 +2,6 @@ package com.example.tdah.util
 
 import android.app.AlertDialog
 import androidx.core.content.ContextCompat
-import android.content.Context
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView

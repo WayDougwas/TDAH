@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,8 +18,6 @@ import com.example.tdah.util.DateUtils.isValidDate
 import com.example.tdah.util.PopupUtils.showLoginPopup
 import com.example.tdah.util.NavigationUtils
 import com.google.android.material.textfield.TextInputEditText
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
