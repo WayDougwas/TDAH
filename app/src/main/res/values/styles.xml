@@ -9,4 +9,9 @@
     <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:datePickerMode">spinner</item>
     </style>
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="hintEnabled">true</item>
+        <item name="hintTextColor">@color/gray</item>
+    </style>
 </resources>
