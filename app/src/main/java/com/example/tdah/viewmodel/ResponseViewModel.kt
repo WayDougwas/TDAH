@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tdah.data.Response
-import com.example.tdah.data.UserDatabase
+import com.example.tdah.data.AppDatabase
 import com.example.tdah.repository.ResponseRepository
 import kotlinx.coroutines.launch
 
@@ -15,7 +15,7 @@ class ResponseViewModel(application: Application) : AndroidViewModel(application
     val allResponses: LiveData<List<Response>>
 
     init {
-        val responseDao = UserDatabase.getDatabase(application).responseDao()
+        val responseDao = AppDatabase.getDatabase(application).responseDao()
         responseRepository = ResponseRepository(responseDao)
         allResponses = responseRepository.getAllResponses()
     }

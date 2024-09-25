@@ -6,13 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tdah.data.User
-import com.example.tdah.data.UserDatabase
+import com.example.tdah.data.AppDatabase
 import com.example.tdah.repository.UserRepository
 import com.example.tdah.util.DateUtils
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -20,7 +19,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val allUsers: LiveData<List<User>>
 
     init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
+        val userDao = AppDatabase.getDatabase(application).userDao()
         userRepository = UserRepository(userDao)
         allUsers = userRepository.getAllUsers()
     }
