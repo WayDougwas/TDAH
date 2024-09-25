@@ -73,4 +73,6 @@
     <string name="year">Ano</string>
     <string name="error_phone_invalid">Numero Invalido</string>
     <string name="error_date_invalid">Data inválida</string>
+    <string name="series">Série</string>
+    <string name="clas">Turma</string>
 </resources>
