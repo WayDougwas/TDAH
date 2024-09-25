@@ -10,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tdah.R
 
 object PopupUtils {
+
     // Função para exibir o diálogo de confirmação
-    fun showExitConfirmationDialog(context: Context, activity: AppCompatActivity, mode: String? = null) {
-        val builder = AlertDialog.Builder(context)
+    fun showExitConfirmationDialog(activity: AppCompatActivity, mode: String? = null) {
+        val builder = AlertDialog.Builder(activity)
 
         val msg: String = if (mode == "p") {
             "Tem certeza que deseja voltar para a tela inicial? Todo o progresso será perdido."
@@ -23,23 +24,21 @@ object PopupUtils {
         builder.setMessage(msg)
             .setCancelable(false)
             .setPositiveButton("Sim") { _, _ ->
-                // Finaliza a atividade e volta para a tela inicial
-                activity.finish()
+                activity.finish() // Finaliza a atividade
             }
-            .setNegativeButton("não") { dialog, _ ->
-                // Apenas fecha o diálogo
-                dialog.dismiss()
+            .setNegativeButton("Não") { dialog, _ ->
+                dialog.dismiss() // Fecha o diálogo
             }
-        val alert = builder.create()
-        alert.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_background_nb))
 
+        val alert = builder.create()
+        alert.window?.setBackgroundDrawable(ContextCompat.getDrawable(activity, R.drawable.rounded_background_nb))
         alert.show()
     }
 
-    // Função para exibir o diálogo de login
-    fun showLoginPopup(context: Context) {
-        val builder = AlertDialog.Builder(context)
-        val inflater = (context as AppCompatActivity).layoutInflater
+    // Função para exibir o popup de login
+    fun showLoginPopup(activity: AppCompatActivity) {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater
         val dialogView = inflater.inflate(R.layout.popup_login, null)
         builder.setView(dialogView)
 
@@ -53,36 +52,49 @@ object PopupUtils {
             val username = editTextUsername.text.toString()
             val password = editTextPassword.text.toString()
 
-            // Simular a autenticação
-            if (username == "" && password == "") {
+            if (isValidLogin(username, password)) {
                 dialog.dismiss()
-                // Assumindo que você tem um método para navegação
-                NavigationUtils.toDashboard(context)
+                NavigationUtils.toDashboard(activity)
             } else {
-                // Mostrar mensagem de erro
-                editTextUsername.error = context.getString(R.string.admin_login_error)
+                editTextUsername.error = activity.getString(R.string.admin_login_error)
             }
         }
-        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_background_nb))
 
+        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(activity, R.drawable.rounded_background_nb))
         dialog.show()
     }
 
-    fun showQuizResult(context: Context, percentageString: String){
-        val builder = AlertDialog.Builder(context)
-        val inflater = (context as AppCompatActivity).layoutInflater
+    // Função para validar o login (simulada)
+    private fun isValidLogin(username: String, password: String): Boolean {
+        // Lógica de validação de login simulada
+        // TODO: Alterar para um usuario de admin seguro depois
+        return username == "admin" && password == "1234"
+    }
+
+    // Função para exibir o resultado do quiz
+    fun showQuizResult(activity: AppCompatActivity, percentageString: String) {
+        val builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater
         val dialogView = inflater.inflate(R.layout.popup_result, null)
+
         val porcentView: TextView = dialogView.findViewById(R.id.txt_porcent)
         val restartButton: Button = dialogView.findViewById(R.id.btn_restart)
 
-        restartButton.setOnClickListener { NavigationUtils.toHome(context) }
         porcentView.text = percentageString
+
+        restartButton.setOnClickListener {
+            NavigationUtils.toHome(activity)
+        }
 
         builder.setView(dialogView)
         val dialog = builder.create()
+        dialog.setCancelable(false) // Impede que seja fechado ao clicar fora
+        dialog.setOnKeyListener { _, keyCode, _ ->
+            // Ignora o botão de voltar
+            keyCode == android.view.KeyEvent.KEYCODE_BACK
+        }
 
-        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.rounded_background_nb))
-
+        dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(activity, R.drawable.rounded_background_nb))
         dialog.show()
     }
 }
