@@ -7,18 +7,32 @@ import java.io.File
 import java.io.IOException
 
 object DatabaseUtils {
-    fun exportDatabase(context: Context) {
+    fun exportDatabase(context: Context, databaseName: String) {
         try {
-            // Verifica se o armazenamento externo está disponível para leitura/escrita
             if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-                val dbPath = context.getDatabasePath("app_database").absolutePath
-                val exportPath = File(context.getExternalFilesDir(null), "user_database_export.db")
+                // Caminhos dos arquivos do banco de dados
+                val dbPath = context.getDatabasePath(databaseName).absolutePath
+                val walPath = "$dbPath-wal"
+                val shmPath = "$dbPath-shm"
 
-                // Copia o banco de dados para o caminho de exportação
-                File(dbPath).copyTo(exportPath, overwrite = true)
+                // Diretório de exportação
+                val exportDir = File(context.getExternalFilesDir(null), "database_export")
+                if (!exportDir.exists()) {
+                    exportDir.mkdirs() // Cria o diretório se não existir
+                }
+
+                // Arquivos de exportação
+                val exportDbPath = File(exportDir, databaseName)
+                val exportWalPath = File(exportDir, "$databaseName-wal")
+                val exportShmPath = File(exportDir, "$databaseName-shm")
+
+                // Copia os arquivos do banco de dados
+                File(dbPath).copyTo(exportDbPath, overwrite = true)
+                File(walPath).copyTo(exportWalPath, overwrite = true)
+                File(shmPath).copyTo(exportShmPath, overwrite = true)
 
                 // Notifica o usuário sobre o sucesso
-                Toast.makeText(context, "Banco de dados exportado com sucesso para ${exportPath.absolutePath}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Banco de dados exportado com sucesso para ${exportDir.absolutePath}", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(context, "Armazenamento externo não está disponível", Toast.LENGTH_LONG).show()
             }
