@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.types.expressions.GenericArrayClassLiteralSupport.Enabled.isEnabled
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -13,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.example.tdah"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "0.6.0"
         ndk {
