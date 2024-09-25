@@ -67,7 +67,6 @@ class QuizActivity : AppCompatActivity() {
 
                 // Criar uma string representando a resposta
                 val answerString = "$currentQuestionIndex-$selectedAnswerId"
-                val answerHash = HashUtils.generateHash(answerString)
 
                 // Salvar a resposta temporariamente
                 if (userId != null) {
@@ -107,7 +106,7 @@ class QuizActivity : AppCompatActivity() {
         }
 
         homeButton.setOnClickListener {
-            showExitConfirmationDialog(this, this, "p")
+            showExitConfirmationDialog(this, "p")
         }
     }
 

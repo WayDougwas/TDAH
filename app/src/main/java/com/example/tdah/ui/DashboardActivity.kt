@@ -46,8 +46,8 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnDashMenu.setOnClickListener { replaceFragment(DashHome()) }
         binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
-        binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this,this) }
-        binding.btnSettings.setOnClickListener {  DatabaseUtils.exportDatabase(this)  }
+        binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this) }
+        binding.btnSettings.setOnClickListener {  DatabaseUtils.exportDatabase(this, "app_database")  }
 
         // Set initial fragment
         if (savedInstanceState == null) {
