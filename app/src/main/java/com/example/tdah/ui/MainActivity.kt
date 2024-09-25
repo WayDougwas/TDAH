@@ -37,6 +37,25 @@ class MainActivity : AppCompatActivity() {
 
         setupDateInputFormatter(dateInput)
 
+        val serieAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.in_series)
+        val serieOptions = arrayOf("1°", "2°", "3°")
+        val serieAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, serieOptions)
+        serieAutoCompleteTextView.setAdapter(serieAdapter)
+        serieAutoCompleteTextView.setOnClickListener {
+            serieAutoCompleteTextView.showDropDown() // Mostra o dropdown ao clicar
+        }
+
+
+        val classAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.in_class)
+        val classOptions = arrayOf("A", "B", "C","D","E","F")
+        val classAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, classOptions)
+        classAutoCompleteTextView.setAdapter(classAdapter)
+        classAutoCompleteTextView.setOnClickListener{
+            classAutoCompleteTextView.showDropDown()
+        }
+
+
+
         val buttonLogin: Button = findViewById(R.id.btn_admin)
         buttonLogin.setOnClickListener {
             showLoginPopup(this)
