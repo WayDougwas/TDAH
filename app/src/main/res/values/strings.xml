@@ -53,6 +53,8 @@
     <string name="user_age"><b>Idade:</b> %1$d</string>
     <string name="user_birthday"><b>Data de Nascimento:</b> %1$s</string>
     <string name="user_email"><b>Email:</b> %1$s</string>
+    <string name="user_schoolyear"><b>Série:</b> %1$s</string>
+    <string name="user_phone"><b>Número:</b> %1$s</string>
     <string name="user_result"><b>Resultado:</b> %.2f%%</string>
 
     <!-- Error Messages -->
@@ -77,4 +79,6 @@
     <string name="hint_class" translatable="false">B</string>
     <string name="series">Série</string>
     <string name="classs">Turma</string>
+    <string name="no_phone">Sem número</string>
+    <string name="no_schoolyear">sem série</string>
 </resources>

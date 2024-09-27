@@ -20,14 +20,18 @@ class UserArrayAdapter(
         val user = getItem(position)
 
         val nameView: TextView = view.findViewById(R.id.user_name)
+        val schoolYearView: TextView = view.findViewById(R.id.user_schoolyear)
         val ageView: TextView = view.findViewById(R.id.user_age)
         val birthDayView: TextView = view.findViewById(R.id.user_birthday)
+        val phoneView: TextView = view.findViewById(R.id.user_phone)
         val emailView: TextView = view.findViewById(R.id.user_email)
         val resultView: TextView = view.findViewById(R.id.user_result)
 
         if (user != null) {
             // Use Elvis operator if the value can be null, otherwise, provide the default value directly
             nameView.text = user.name ?: context.getString(R.string.no_name)
+            schoolYearView.text = context.getString(R.string.user_schoolyear, user.schoolyerar ?: context.getString(R.string.no_schoolyear))
+            phoneView.text = context.getString(R.string.user_phone, user.phone ?: context.getString(R.string.no_phone))
             ageView.text = context.getString(R.string.user_age, user.age ?: 0) // Ensure age is treated as integer
             birthDayView.text = context.getString(R.string.user_birthday, user.birthday ?: context.getString(R.string.unknown))
             emailView.text = context.getString(R.string.user_email, user.email ?: context.getString(R.string.no_email))
