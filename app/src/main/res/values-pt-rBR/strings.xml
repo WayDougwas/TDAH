@@ -53,7 +53,10 @@
     <string name="user_age"><b>Idade:</b> %1$d</string>
     <string name="user_birthday"><b>Data de Nascimento:</b> %1$s</string>
     <string name="user_email"><b>Email:</b> %1$s</string>
+    <string name="user_schoolyear"><b>Série:</b> %1$s</string>
+    <string name="user_phone"><b>Número:</b> %1$s</string>
     <string name="user_result"><b>Resultado:</b> %.2f%%</string>
+    <string name="quiz_result_percentage" translatable="false">%.1f%%</string>
 
     <!-- Error Messages -->
     <string name="select_answer_message">Selecione uma resposta!</string>
@@ -67,12 +70,31 @@
     <string name="name">Nome</string>
     <string name="email">Email</string>
     <string name="phone">Telefone</string>
-    <string name="date">Data de Nascimento</string>
+    <string name="date">Data</string>
     <string name="day">Dia</string>
     <string name="month">Mês</string>
     <string name="year">Ano</string>
-    <string name="error_phone_invalid">Número Invalido</string>
+    <string name="error_phone_invalid">Número Inválido</string>
     <string name="error_date_invalid">Data inválida</string>
+    <string name="hint_series" translatable="false">2°</string>
+    <string name="hint_class" translatable="false">B</string>
     <string name="series">Série</string>
     <string name="classs">Turma</string>
+    <string name="no_phone">Sem número</string>
+    <string name="no_schoolyear">sem série</string>
+    <string name="pergunta_1">Pergunta 1</string>
+    <string name="settings_menu">Menu de Configurações</string> <!-- Consider changing for clarity -->
+    <string name="debug">DEBUG</string>
+    <string name="popups">Popup\'s</string>
+    <string name="input_hint">Insira sua entrada</string> <!-- Localized string -->
+    <string name="result_button">Resultado</string> <!-- Localized string -->
+
+    <!-- Result Messages -->
+    <string name="high_percent">Olá!\n\nObrigado por participar! Os resultados acabaram dando uma porcentagem alta. Uma porcentagem alta pode ser preocupante, mas é importante lembrar que isso é apenas um indicativo. O próximo passo essencial é buscar a orientação de profissionais qualificados, como um psiquiatra ou um psicólogo especializado em TDAH. Eles poderão fornecer uma avaliação completa e discutir as opções de tratamento disponíveis.\n\nAlém disso, conversar com um médico sobre suas preocupações pode ajudar a esclarecer dúvidas e desenvolver um plano que melhor atenda às suas necessidades. Lembre-se de que você não está sozinho nessa jornada e que existem recursos e apoio disponíveis.</string>
+    <string name="low_percent">Olá!\n\nObrigado por participar! Uma porcentagem baixa pode ser um alívio, mas é sempre bom considerar como você se sente em relação à sua atenção e foco no dia a dia. Se você ainda tiver preocupações sobre sua capacidade de concentração ou se estiver enfrentando dificuldades, pode ser útil conversar com um profissional da saúde, como um psicólogo. Eles podem ajudá-lo a entender melhor seus desafios e oferecer estratégias para melhorar sua atenção e produtividade.</string>
+
+    <string name="na">N/A</string>
+    <string name="error_invalid_percentage">Erro: porcentagem inválida</string> <!-- Added translation -->
+    <string name="export">Exportar</string>
+    <string name="database">Banco de Dados</string>
 </resources>
