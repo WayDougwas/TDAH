@@ -9,7 +9,7 @@ The TDAH App is an Android application made for a school project designed to man
 ### Prerequisites
 
 - Android Studio
-- Java 8 or higher
+- Java 17 or higher
 - Gradle
 
 ### Setup
