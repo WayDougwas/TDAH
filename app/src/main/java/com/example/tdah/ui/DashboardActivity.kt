@@ -2,6 +2,7 @@ package com.example.tdah.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
@@ -15,7 +16,9 @@ import com.example.tdah.R
 import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
 import com.example.tdah.fragments.ListMenu
+import com.example.tdah.fragments.Settings
 import com.example.tdah.util.DatabaseUtils
+import com.example.tdah.util.DisplayUtils.setupWindowInsets
 import com.example.tdah.util.PopupUtils
 
 class DashboardActivity : AppCompatActivity() {
@@ -29,25 +32,15 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Handle window insets
-        ViewCompat.setOnApplyWindowInsetsListener(binding.dashboard) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // Configure insets controller
-        window.insetsController?.let {
-            it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-            it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+        val mainView = findViewById<View>(R.id.dashboard)
+        setupWindowInsets(mainView)
 
         // Set up button listeners
         binding.btnDashMenu.setOnClickListener { replaceFragment(DashHome()) }
         binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
         binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this) }
-        binding.btnSettings.setOnClickListener {  DatabaseUtils.exportDatabase(this, "app_database")  }
+        binding.btnSettings.setOnClickListener {  replaceFragment(Settings())  }
 
         // Set initial fragment
         if (savedInstanceState == null) {

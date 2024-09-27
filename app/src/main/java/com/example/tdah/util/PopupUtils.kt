@@ -1,11 +1,11 @@
 package com.example.tdah.util
 
 import android.app.AlertDialog
-import androidx.core.content.ContextCompat
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.tdah.R
 
 object PopupUtils {
@@ -71,29 +71,44 @@ object PopupUtils {
     }
 
     // Função para exibir o resultado do quiz
-    fun showQuizResult(activity: AppCompatActivity, percentageString: String) {
+    fun showQuizResult(activity: AppCompatActivity, percentage: Double,cancelable: Boolean = false) {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater
         val dialogView = inflater.inflate(R.layout.popup_result, null)
 
         val porcentView: TextView = dialogView.findViewById(R.id.txt_porcent)
         val restartButton: Button = dialogView.findViewById(R.id.btn_restart)
+        val message: TextView = dialogView.findViewById(R.id.txt_result_popup_message)
 
-        porcentView.text = percentageString
+        // Atualiza a mensagem com base na porcentagem
+        message.text = if (percentage >= 50) {
+            activity.getString(R.string.high_percent)
+        } else {
+            activity.getString(R.string.low_percent)
+        }
 
+        // Usa a string do recurso com o placeholder
+        porcentView.text = String.format(activity.getString(R.string.quiz_result_percentage), percentage)
+
+        // Configura o botão de reinício
         restartButton.setOnClickListener {
             NavigationUtils.toHome(activity)
         }
 
+        // Constrói e exibe o diálogo
         builder.setView(dialogView)
         val dialog = builder.create()
-        dialog.setCancelable(false) // Impede que seja fechado ao clicar fora
-        dialog.setOnKeyListener { _, keyCode, _ ->
-            // Ignora o botão de voltar
-            keyCode == android.view.KeyEvent.KEYCODE_BACK
+        if (cancelable){
+            dialog.setCancelable(false) // Impede que o diálogo seja fechado ao clicar fora
+            dialog.setOnKeyListener { _, keyCode, _ ->
+                // Ignora o botão de voltar
+                keyCode == android.view.KeyEvent.KEYCODE_BACK
+            }
         }
-
         dialog.window?.setBackgroundDrawable(ContextCompat.getDrawable(activity, R.drawable.rounded_background_nb))
         dialog.show()
     }
+
+
 }
+

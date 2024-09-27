@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import android.view.WindowManager
 import com.example.tdah.R
 import com.example.tdah.util.DateUtils.formatDateInput
 import com.example.tdah.util.DateUtils.isValidDate
+import com.example.tdah.util.DisplayUtils.setupWindowInsets
 import com.example.tdah.util.PopupUtils.showLoginPopup
 import com.example.tdah.util.NavigationUtils
 import com.google.android.material.textfield.TextInputEditText
@@ -24,13 +26,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val mainView = findViewById<View>(R.id.main)
         val nameInput = findViewById<EditText>(R.id.in_name)
         val emailInput = findViewById<EditText>(R.id.in_email)
         val phoneInput = findViewById<EditText>(R.id.in_phone)
         val dateInput = findViewById<TextInputEditText>(R.id.in_date)
 
-        setupWindowInsets()
+        setupWindowInsets(mainView)
 
         setupDateInputFormatter(dateInput)
 
@@ -68,29 +70,6 @@ class MainActivity : AppCompatActivity() {
                 // Implement custom logic for the back button if necessary
             }
         })
-    }
-
-    private fun setupWindowInsets() {
-        // API 30+ usa WindowInsetsController
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-                insets
-            }
-
-            window.insetsController?.apply {
-                hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        } else {
-            // Para API < 30, usa flags de LayoutParams
-            @Suppress("DEPRECATION")
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
     }
 
     private fun setupDateInputFormatter(dateInput: TextInputEditText) {

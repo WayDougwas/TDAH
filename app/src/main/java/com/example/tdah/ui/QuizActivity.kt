@@ -1,6 +1,7 @@
 package com.example.tdah.ui
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioGroup
@@ -10,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tdah.R
 import com.example.tdah.data.Response
+import com.example.tdah.util.DisplayUtils.setupWindowInsets
 import com.example.tdah.util.PopupUtils
 import com.example.tdah.util.PopupUtils.showExitConfirmationDialog
 import com.example.tdah.viewmodel.ResponseViewModel
@@ -30,6 +32,8 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+        val mainView = findViewById<View>(R.id.quiz)
+        setupWindowInsets(mainView)
 
         // Recuperar os dados do usuário da intent
         val name = intent.getStringExtra("USER_NAME")
@@ -94,7 +98,7 @@ class QuizActivity : AppCompatActivity() {
                     }
 
                     // Mostrar resultado
-                    PopupUtils.showQuizResult(this, "$percentageString%")
+                    PopupUtils.showQuizResult(this, percentage, true)
 
                     // Atualizar o resultado do usuário no banco de dados com o totalScore
                     // (Se desejar atualizar algum dado adicional no usuário)
