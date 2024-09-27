@@ -1,6 +1,5 @@
 package com.example.tdah.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,11 +7,6 @@ import android.view.View
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.view.WindowInsets
-import android.view.WindowInsetsController
-import android.view.WindowManager
 import com.example.tdah.R
 import com.example.tdah.util.DateUtils.formatDateInput
 import com.example.tdah.util.DateUtils.isValidDate

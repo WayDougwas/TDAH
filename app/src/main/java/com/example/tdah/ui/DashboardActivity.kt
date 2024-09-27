@@ -3,12 +3,8 @@ package com.example.tdah.ui
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.tdah.databinding.ActivityDashboardBinding
 import androidx.activity.OnBackPressedCallback
@@ -17,7 +13,6 @@ import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
 import com.example.tdah.fragments.ListMenu
 import com.example.tdah.fragments.Settings
-import com.example.tdah.util.DatabaseUtils
 import com.example.tdah.util.DisplayUtils.setupWindowInsets
 import com.example.tdah.util.PopupUtils
 
