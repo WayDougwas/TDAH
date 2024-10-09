@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.tdah.data.User
 import com.example.tdah.data.AppDatabase
+import com.example.tdah.data.User
 import com.example.tdah.repository.UserRepository
 import com.example.tdah.util.DateUtils
 import kotlinx.coroutines.launch
@@ -25,13 +25,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // UserViewModel.kt
-    fun insertUser(name: String, email: String, birthDateString: String,schoolyerar:String,phone:Int ,result:Double): LiveData<Long> {
+    fun insertUser(
+        name: String, email: String, birthDateString: String,
+        schoolyear:String,
+        phone: String,
+        result:Double): LiveData<Long> {
         val userIdLiveData = MutableLiveData<Long>()
         viewModelScope.launch {
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             val birthDate = LocalDate.parse(birthDateString, formatter)
             val age = DateUtils.calculateAge(birthDate)
-            val user = User(name = name, email = email, age = age, birthday = birthDateString, schoolyerar = schoolyerar, phone = phone ,result = result)
+            val user = User(name = name, email = email, age = age, birthday = birthDateString, schoolyear = schoolyear, phone = phone ,result = result)
             val userId = userRepository.insert(user) // Retorna Long
             userIdLiveData.postValue(userId) // Poste o Long ID do usuário
         }

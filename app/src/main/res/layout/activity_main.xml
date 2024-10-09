@@ -177,8 +177,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_phone"
-                    android:maxLength="11"
-                    android:inputType="phone"
+                    android:maxLength="15"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black_50" />
             </com.google.android.material.textfield.TextInputLayout>

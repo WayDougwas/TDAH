@@ -35,9 +35,4 @@ class ResponseRepository(private val responseDao: ResponseDao) {
     fun getResponsesByUserId(userId: Int): LiveData<List<Response>> {
         return responseDao.getResponsesByUserId(userId)
     }
-
-    // Recupera as respostas de uma pergunta específica para um usuário
-    fun getResponsesForQuestion(userId: Int, question: String): LiveData<List<Response>> {
-        return responseDao.getResponsesForQuestion(userId, question)
-    }
 }

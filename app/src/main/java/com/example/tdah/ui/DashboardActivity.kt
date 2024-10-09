@@ -3,12 +3,12 @@ package com.example.tdah.ui
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.tdah.databinding.ActivityDashboardBinding
-import androidx.activity.OnBackPressedCallback
 import com.example.tdah.R
+import com.example.tdah.databinding.ActivityDashboardBinding
 import com.example.tdah.fragments.DashHome
 import com.example.tdah.fragments.GraphMenu
 import com.example.tdah.fragments.ListMenu
@@ -35,13 +35,12 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnDashList.setOnClickListener { replaceFragment(ListMenu()) }
         binding.btnGraphMenu.setOnClickListener { replaceFragment(GraphMenu()) }
         binding.btnHomeMenu.setOnClickListener { PopupUtils.showExitConfirmationDialog(this) }
-        binding.btnSettings.setOnClickListener {  replaceFragment(Settings())  }
+        binding.btnSettings.setOnClickListener { replaceFragment(Settings()) }
 
         // Set initial fragment
         if (savedInstanceState == null) {
             replaceFragment(DashHome())
         }
-
 
 
         // Register a callback for the back button

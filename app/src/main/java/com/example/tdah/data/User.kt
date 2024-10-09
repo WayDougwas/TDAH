@@ -9,8 +9,8 @@ data class User(
     val id: Long = 0,
     val name: String,
     val email: String,
-    val phone: Int,
-    val schoolyerar: String,
+    val phone: String,
+    val schoolyear: String,
     val birthday: String,
     val age: Int,
     val result: Double

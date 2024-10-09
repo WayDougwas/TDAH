@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tdah.R
 import com.example.tdah.util.DateUtils.formatDateInput
 import com.example.tdah.util.DateUtils.isValidDate
 import com.example.tdah.util.DisplayUtils.setupWindowInsets
-import com.example.tdah.util.PopupUtils.showLoginPopup
 import com.example.tdah.util.NavigationUtils
+import com.example.tdah.util.PopupUtils.showLoginPopup
+import com.example.tdah.util.TextUtils.formatPhoneInput
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
@@ -23,16 +28,18 @@ class MainActivity : AppCompatActivity() {
         val mainView = findViewById<View>(R.id.main)
         val nameInput = findViewById<EditText>(R.id.in_name)
         val emailInput = findViewById<EditText>(R.id.in_email)
-        val phoneInput = findViewById<EditText>(R.id.in_phone)
+        val phoneInput = findViewById<TextInputEditText>(R.id.in_phone)
         val dateInput = findViewById<TextInputEditText>(R.id.in_date)
 
         setupWindowInsets(mainView)
 
         setupDateInputFormatter(dateInput)
+        setupPhoneInputFormatter(phoneInput)
 
         val serieAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.in_series)
         val serieOptions = arrayOf("1°", "2°", "3°")
-        val serieAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, serieOptions)
+        val serieAdapter =
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, serieOptions)
         serieAutoCompleteTextView.setAdapter(serieAdapter)
         serieAutoCompleteTextView.setOnClickListener {
             serieAutoCompleteTextView.showDropDown() // Mostra o dropdown ao clicar
@@ -40,13 +47,13 @@ class MainActivity : AppCompatActivity() {
 
 
         val classAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.in_class)
-        val classOptions = arrayOf("A", "B", "C","D","E","F")
-        val classAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, classOptions)
+        val classOptions = arrayOf("A", "B", "C", "D", "E", "F")
+        val classAdapter =
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, classOptions)
         classAutoCompleteTextView.setAdapter(classAdapter)
-        classAutoCompleteTextView.setOnClickListener{
+        classAutoCompleteTextView.setOnClickListener {
             classAutoCompleteTextView.showDropDown()
         }
-
 
 
         val buttonLogin: Button = findViewById(R.id.btn_admin)
@@ -63,6 +70,34 @@ class MainActivity : AppCompatActivity() {
             override fun handleOnBackPressed() {
                 // Implement custom logic for the back button if necessary
             }
+        })
+    }
+
+    private fun setupPhoneInputFormatter(phoneInput: TextInputEditText) {
+        phoneInput.addTextChangedListener(object : TextWatcher {
+            private var isFormatting = false
+            private var lastFormattedText = ""
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!isFormatting) {
+                    isFormatting = true
+
+                    // Evitar formatação repetida
+                    val currentText = s.toString()
+                    if (currentText != lastFormattedText) {
+                        val formattedPhone = formatPhoneInput(currentText)
+                        lastFormattedText = formattedPhone
+                        phoneInput.setText(formattedPhone)
+                        phoneInput.setSelection(formattedPhone.length) // Ajusta o cursor ao final do texto
+                    }
+
+                    isFormatting = false
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
@@ -94,18 +129,15 @@ class MainActivity : AppCompatActivity() {
     ) {
         val name = nameInput.text.toString()
         val email = emailInput.text.toString()
-        val phone = phoneInput.text.toString().toIntOrNull()
+        val phone = phoneInput.text.toString()
         val birthday = dateInput.text.toString()
 
         if (name.isNotEmpty() && email.isNotEmpty() && birthday.isNotEmpty()) {
             if (isValidDate(birthday)) {
-                if (phone != null) {
-                    NavigationUtils.toQuiz(this, name, email, "2B", phone, birthday)
-                } else {
-                    Toast.makeText(this, getString(R.string.error_phone_invalid), Toast.LENGTH_SHORT).show()
-                }
+                NavigationUtils.toQuiz(this, name, email, "2B", phone, birthday)
             } else {
-                Toast.makeText(this, getString(R.string.error_date_invalid), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_date_invalid), Toast.LENGTH_SHORT)
+                    .show()
             }
         } else {
             Toast.makeText(this, getString(R.string.error_user), Toast.LENGTH_SHORT).show()

@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
             android:padding="42dp"
+            android:justificationMode="inter_word"
             android:text="@string/na"
             android:textColor="@color/black"
             android:textSize="18sp" />

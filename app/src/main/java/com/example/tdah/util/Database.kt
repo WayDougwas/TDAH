@@ -32,13 +32,25 @@ object DatabaseUtils {
                 File(shmPath).copyTo(exportShmPath, overwrite = true)
 
                 // Notifica o usuário sobre o sucesso
-                Toast.makeText(context, "Banco de dados exportado com sucesso para ${exportDir.absolutePath}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Banco de dados exportado com sucesso para ${exportDir.absolutePath}",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(context, "Armazenamento externo não está disponível", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Armazenamento externo não está disponível",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         } catch (e: IOException) {
             e.printStackTrace()
-            Toast.makeText(context, "Erro ao exportar banco de dados: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                "Erro ao exportar banco de dados: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }

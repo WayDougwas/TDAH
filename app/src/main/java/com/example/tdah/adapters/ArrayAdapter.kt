@@ -28,14 +28,13 @@ class UserArrayAdapter(
         val resultView: TextView = view.findViewById(R.id.user_result)
 
         if (user != null) {
-            // Use Elvis operator if the value can be null, otherwise, provide the default value directly
-            nameView.text = user.name ?: context.getString(R.string.no_name)
-            schoolYearView.text = context.getString(R.string.user_schoolyear, user.schoolyerar ?: context.getString(R.string.no_schoolyear))
-            phoneView.text = context.getString(R.string.user_phone, user.phone ?: context.getString(R.string.no_phone))
-            ageView.text = context.getString(R.string.user_age, user.age ?: 0) // Ensure age is treated as integer
-            birthDayView.text = context.getString(R.string.user_birthday, user.birthday ?: context.getString(R.string.unknown))
-            emailView.text = context.getString(R.string.user_email, user.email ?: context.getString(R.string.no_email))
-            resultView.text = context.getString(R.string.user_result, user.result ?: 0.0) // Ensure result is treated as integer
+            nameView.text = user.name // Não precisa do Elvis se name é não nulo
+            schoolYearView.text = context.getString(R.string.user_schoolyear, user.schoolyear ?: context.getString(R.string.no_schoolyear))
+            phoneView.text = context.getString(R.string.user_phone, user.phone) // Não precisa do Elvis se phone é String
+            ageView.text = context.getString(R.string.user_age, user.age ?: 0) // Assume 0 se idade for nula
+            birthDayView.text = context.getString(R.string.user_birthday, user.birthday)
+            emailView.text = context.getString(R.string.user_email, user.email)
+            resultView.text = context.getString(R.string.user_result, user.result ?: 0.0) // Use 0.0 se o resultado for nulo
         } else {
             // Handle the case where user is null
             nameView.text = context.getString(R.string.no_user_data)

@@ -70,7 +70,7 @@
     <string name="name">Nome</string>
     <string name="email">Email</string>
     <string name="phone">Telefone</string>
-    <string name="date">Data</string>
+    <string name="date">Data de Nascimento</string>
     <string name="day">Dia</string>
     <string name="month">Mês</string>
     <string name="year">Ano</string>

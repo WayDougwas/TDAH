@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.tdah.data.Response
 import com.example.tdah.data.AppDatabase
+import com.example.tdah.data.Response
 import com.example.tdah.repository.ResponseRepository
 import kotlinx.coroutines.launch
 
@@ -17,12 +17,14 @@ class ResponseViewModel(application: Application) : AndroidViewModel(application
     init {
         val responseDao = AppDatabase.getDatabase(application).responseDao()
         responseRepository = ResponseRepository(responseDao)
+
         allResponses = responseRepository.getAllResponses()
     }
 
     fun insert(response: Response) = viewModelScope.launch {
-        responseRepository.insert(response)
+        responseRepository.insert(response) // Certifique-se de que este método esteja funcionando
     }
+
 
     fun update(response: Response) = viewModelScope.launch {
         responseRepository.update(response)
@@ -38,9 +40,5 @@ class ResponseViewModel(application: Application) : AndroidViewModel(application
 
     fun getResponsesByUserId(userId: Int): LiveData<List<Response>> {
         return responseRepository.getResponsesByUserId(userId)
-    }
-
-    fun getResponsesForQuestion(userId: Int, question: String): LiveData<List<Response>> {
-        return responseRepository.getResponsesForQuestion(userId, question)
     }
 }

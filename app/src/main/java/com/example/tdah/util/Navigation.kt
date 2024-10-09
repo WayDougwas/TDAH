@@ -30,7 +30,7 @@ object NavigationUtils {
      * @param email The user's email.
      * @param age The user's age.
      */
-    fun toQuiz(context: Context, name: String, email: String,schoolyear:String,phone:Int ,age: String) {
+    fun toQuiz(context: Context, name: String, email: String,schoolyear:String,phone:String ,age: String) {
         val intent = Intent(context, QuizActivity::class.java).apply {
             putExtra("USER_NAME", name)
             putExtra("USER_EMAIL", email)

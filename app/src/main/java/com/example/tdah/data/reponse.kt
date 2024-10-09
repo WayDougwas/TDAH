@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "responses")
 data class Response(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val userId: Long = 0,
-    val question: Int,
-    val answer: String,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0, // ID gerado automaticamente
+    var userId: Long, // Verifique se isso corresponde ao tipo de ID do usuário
+    var answer: String
 )
