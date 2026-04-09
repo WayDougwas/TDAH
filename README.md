@@ -17,7 +17,7 @@ The TDAH App is an Android application made for a school project designed to man
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/WayDougwas/TDAH/edit/master/README.md
+   git clone https://github.com/WayDougwas/TDAH
    cd TDAH
 2. **Open in Android Studio**
 
